@@ -8,6 +8,9 @@ import { errorHandler } from './middleware/error.middleware';
 import authRoutes from './routes/auth.routes';
 import customerRoutes from './routes/customer.routes';
 import productRoutes from './routes/product.routes';
+import inventoryRoutes from './routes/inventory.routes';
+import challanRoutes from './routes/challan.routes';
+import dashboardRoutes from './routes/dashboard.routes';
 
 const app = express();
 
@@ -26,6 +29,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', authRoutes);
 app.use('/api/customers', customerRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/inventory', inventoryRoutes);
+app.use('/api/challans', challanRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Health Check Endpoint
 app.get('/api/health', async (_req, res) => {
