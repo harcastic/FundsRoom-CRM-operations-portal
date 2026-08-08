@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import { env } from './config/env';
+import { checkDatabaseConnection } from './config/database';
 import { sendSuccess, sendError } from './utils/response';
 import { errorHandler } from './middleware/error.middleware';
 
@@ -19,8 +20,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Health Check Endpoint
-app.get('/api/health', (_req, res) => {
-  return sendSuccess(res, undefined, 'API is running');
+app.get('/api/health', async (_req, res) => {
+  const dbConnected = await checkDatabaseConnection();
+  return sendSuccess(
+    res,
+    { dbConnected, environment: env.NODE_ENV },
+    'API is running'
+  );
 });
 
 // 404 Handler for undefined routes
