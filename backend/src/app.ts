@@ -5,6 +5,7 @@ import { env } from './config/env';
 import { checkDatabaseConnection } from './config/database';
 import { sendSuccess, sendError } from './utils/response';
 import { errorHandler } from './middleware/error.middleware';
+import authRoutes from './routes/auth.routes';
 
 const app = express();
 
@@ -18,6 +19,9 @@ app.use(
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// API Routes
+app.use('/api/auth', authRoutes);
 
 // Health Check Endpoint
 app.get('/api/health', async (_req, res) => {
