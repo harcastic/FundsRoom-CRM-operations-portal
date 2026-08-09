@@ -29,8 +29,19 @@ services:
       JWT_SECRET: super_secret_production_jwt_key_987654321
       JWT_EXPIRES_IN: 1d
       CLIENT_URL: http://localhost:3000
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:5000/api
+    container_name: crm_frontend
+    restart: always
+    ports:
+      - "3000:80"
     depends_on:
-      - postgres
+      - backend
 
 volumes:
   postgres_data:
+
