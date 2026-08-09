@@ -12,6 +12,7 @@ import { Inventory } from './pages/Inventory';
 import { Challans } from './pages/Challans';
 import { CreateChallan } from './pages/CreateChallan';
 import { ChallanDetails } from './pages/ChallanDetails';
+import { NotFound } from './pages/NotFound';
 
 export function App() {
   return (
@@ -38,7 +39,8 @@ export function App() {
             <Route path="challans" element={<Challans />} />
             <Route path="challans/create" element={<CreateChallan />} />
             <Route path="challans/:id" element={<ChallanDetails />} />
-            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+            <Route path="404" element={<NotFound />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </AuthProvider>
