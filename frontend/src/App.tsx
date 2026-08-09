@@ -9,6 +9,9 @@ import { CustomerDetails } from './pages/CustomerDetails';
 import { Products } from './pages/Products';
 import { ProductDetails } from './pages/ProductDetails';
 import { Inventory } from './pages/Inventory';
+import { Challans } from './pages/Challans';
+import { CreateChallan } from './pages/CreateChallan';
+import { ChallanDetails } from './pages/ChallanDetails';
 
 export function App() {
   return (
@@ -32,6 +35,9 @@ export function App() {
             <Route path="products" element={<Products />} />
             <Route path="products/:id" element={<ProductDetails />} />
             <Route path="inventory" element={<Inventory />} />
+            <Route path="challans" element={<Challans />} />
+            <Route path="challans/create" element={<CreateChallan />} />
+            <Route path="challans/:id" element={<ChallanDetails />} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Route>
         </Routes>
