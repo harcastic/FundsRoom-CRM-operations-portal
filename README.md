@@ -115,3 +115,24 @@ Configure the following secrets in your repository under **Settings > Secrets an
 | `CLIENT_URL` | Allowed CORS client URL | `http://54.210.12.34:3000` |
 | `VITE_API_URL` | Frontend API Endpoint URL | `http://54.210.12.34:5000/api` |
 
+---
+
+## 🌐 Deploying to Vercel (Frontend) & Render (Backend)
+
+### 1. Backend Deployment (Render)
+1. Push code to GitHub.
+2. Go to [Render Dashboard](https://dashboard.render.com/) and click **New > Blueprint**.
+3. Connect your GitHub repository. Render will automatically detect [`render.yaml`](file:///d:/majorProjects/CRM-operation/render.yaml).
+4. Set the environment variables in Render:
+   - `DATABASE_URL`: Managed PostgreSQL URL (e.g. Neon, Supabase, Render Postgres).
+   - `CLIENT_URL`: Your Vercel frontend URL (e.g. `https://your-app.vercel.app`).
+5. Render will automatically build the TS source, run database migrations (`npm run migrate:prod`), and start the web service with `/api/health` monitoring.
+
+### 2. Frontend Deployment (Vercel)
+1. Go to [Vercel Dashboard](https://vercel.com/dashboard) and click **Add New > Project**.
+2. Select your repository and choose `frontend` as the **Root Directory**.
+3. Set the Environment Variable in Vercel:
+   - `VITE_API_URL`: `https://your-render-backend-url.onrender.com/api`
+4. Click **Deploy**. Vercel uses [`frontend/vercel.json`](file:///d:/majorProjects/CRM-operation/frontend/vercel.json) to handle SPA routing.
+
+
