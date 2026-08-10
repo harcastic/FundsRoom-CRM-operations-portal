@@ -22,4 +22,12 @@ if (!_env.success) {
   process.exit(1);
 }
 
-export const env = _env.data;
+const parsedClientUrls = _env.data.CLIENT_URL.split(',').map((url) => url.trim()).filter(Boolean);
+
+export const env = {
+  ..._env.data,
+  ALLOWED_ORIGINS: Array.from(
+    new Set([...parsedClientUrls, 'http://localhost:3000', 'http://localhost:5173'])
+  ),
+};
+

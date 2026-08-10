@@ -94,3 +94,24 @@ Run `npm run seed` inside `backend/` to populate sample data:
 6. Open **Challan Details** and click **Confirm Challan**.
 7. Backend validates inventory stock, deducts quantity, logs stock movement (`OUT`), and sets status to `CONFIRMED`.
 8. Open **Products / Inventory** to verify updated available stock counts.
+
+---
+
+## 🚢 Deployment (AWS EC2 & GitHub Actions)
+
+Automated deployment is configured using GitHub Actions (`.github/workflows/deploy.yml`).
+
+### Required GitHub Repository Secrets
+
+Configure the following secrets in your repository under **Settings > Secrets and variables > Actions**:
+
+| Secret Name | Description | Example |
+| :--- | :--- | :--- |
+| `AWS_HOST` | EC2 Public IP or Domain | `54.210.12.34` |
+| `AWS_USER` | EC2 SSH Username | `ubuntu` or `ec2-user` |
+| `AWS_SSH_KEY` | Private SSH Key (`.pem`) | `-----BEGIN RSA PRIVATE KEY-----...` |
+| `DATABASE_URL` | Production Database URL | `postgresql://user:pass@host:5432/dbname` |
+| `JWT_SECRET` | Secret key for JWT signing | `your_long_production_jwt_secret_key` |
+| `CLIENT_URL` | Allowed CORS client URL | `http://54.210.12.34:3000` |
+| `VITE_API_URL` | Frontend API Endpoint URL | `http://54.210.12.34:5000/api` |
+

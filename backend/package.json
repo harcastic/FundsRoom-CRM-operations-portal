@@ -8,6 +8,7 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "migrate": "tsx src/scripts/migrate.ts",
+    "migrate:prod": "node dist/scripts/migrate.js",
     "seed": "tsx src/scripts/seed.ts",
     "test": "jest --runInBand"
   },
